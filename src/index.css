@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import "tailwindcss";
+
+.open-sans{
+  font-family: "Open Sans", sans-serif;
+}
+@media  (min-width: 1550px) and (max-width:1920px){
+  .padding-2xl {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+@media (max-width: 1550px) and (min-width: 1366px) {
+  .padding-2xl {
+    padding-left: 60px;
+    padding-right: 40px;
+  }
+}
+@media (max-width: 1366px) and (min-width: 1200px) {
+  .padding-2xl {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+@media (max-width: 1200px){
+  .padding-2xl {
+    padding-left: 20px;
+    padding-right: 25px;
+  }
+}
+
+
+
+/* animation  */
+
+/* === IMAGES FADE LOOP === */
+@keyframes imagesSequence {
+  0% { opacity: 0.1; }
+  10%, 30% { opacity: 0.4; }
+  50% { opacity: .7; }
+  100% { opacity: 1; }
+}
+
+/* === BUILD BOX SEQUENCE === */
+@keyframes buildSequence {
+  0%, 20% { opacity: 0; }
+  30%, 40% { opacity: 1; }
+  50%, 100% { opacity: 1; }
+}
+
+/* === UNIQUE BOX SEQUENCE === */
+@keyframes uniqueSequence {
+  0%, 30% { opacity: 0; }
+  40%, 50% { opacity: 1; }
+  60%, 100% { opacity: 1; }
+}
+
+.fade-img-seq {
+  animation: imagesSequence 5s ease-in-out infinite;
+}
+
+.fade-build-seq {
+  animation: buildSequence 5s ease-in-out infinite;
+}
+
+.fade-unique-seq {
+  animation: uniqueSequence 5s ease-in-out infinite;
+}
