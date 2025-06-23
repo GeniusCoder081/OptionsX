@@ -1,43 +1,8 @@
-import categoryimg1 from "../assets/images/categoryimg1.png";
-import categoryimg2 from "../assets/images/categoryimg2.png";
-import categoryimg3 from "../assets/images/categoryimg3.png";
-import categoryimg4 from "../assets/images/categoryimg4.png";
-import categorybigimg1 from "../assets/images/categorycardimg1.png";
+import bestsellimg1 from "../assets/images/bestsellerimg1.png"
+import bestsellimg2 from "../assets/images/bestsellerimg2.png"
+import bestsellimg3 from "../assets/images/bestsellerimg3.png"
 import { MdOutlineShoppingCart } from "react-icons/md";
-import categorybigimg2 from "../assets/images/categorycardimg2.png";
 import { IoIosStar } from "react-icons/io";
-export interface CardItem {
-  id: number;
-  image: string;
-  title: string;
-  background: string;
-}
-export const cardsData: CardItem[] = [
-  {
-    id: 1,
-    image: categoryimg1,
-    title: "Graphic Design",
-    background: "#A383FF",
-  },
-  {
-    id: 2,
-    image: categoryimg2,
-    title: "E-Commerce",
-    background: "#899BFD",
-  },
-  {
-    id: 3,
-    image: categoryimg3,
-    title: "Website Design",
-    background: "#B92FE5",
-  },
-  {
-    id: 4,
-    image: categoryimg4,
-    title: "UI/UX Design",
-    background: "#7469FF",
-  },
-];
 
 export interface CardItem2 {
   id: number;
@@ -49,64 +14,48 @@ export interface CardItem2 {
 export const cardsData2: CardItem2[] = [
   {
     id: 1,
-    image: categorybigimg1,
-    title: "MAC Beauty| Enhance Your Beauty With MAC Beauty Makeup. ",
+    image: bestsellimg1,
+    title: "Just Blogger | Multi purpose blogging themes ",
     disc: "by ThemeFusion in Business",
     price: 69,
   },
   {
     id: 2,
-    image: categorybigimg2,
+    image: bestsellimg2,
+    title: "Fitness | Keep moving forward every moment",
+    disc: "by ThemeFusion in Business",
+    price: 99,
+  },
+  {
+    id: 3,
+    image: bestsellimg3,
     title: "Dream Destination | Get Travlog Theme With Full UI Design.",
     disc: "by ThemeFusion in Business",
     price: 99,
   },
 ];
-const Category: React.FC = () => {
+const BestSellers: React.FC = () => {
   return (
-    <div>
-      <div className="container mx-auto pt-10 pb-15 px-6">
+    <div className="bg-[#f9f9f9]">
+      <div className="container mx-auto pt-10 pb-25 px-6">
         <div className="flex flex-col gap-3">
           <div className="flex flex-row justify-between items-center ">
             <h1 className="lg:text-[38px] md:text-3xl sm:text-2xl text-lg text-black font-bold open-sans ">
-              Most purchased <span className="text-red-600">Category</span>
+              Pick your Best <span className="text-red-600">Themes of the week</span>
             </h1>
             <div>
               <button className="rounded-[10px] md:px-4 px-3 md:py-2.5 py-2 bg-red-600 hover:bg-red-700 cursor-pointer transition-all duration-300 text-white lg:text-base sm:text-sm text-xs whitespace-nowrap font-medium">
-                View All Categories
+                View More Bestsellers
               </button>
             </div>
           </div>
-          <p className="open-sans lg:text-base md:text-sm text-[11px] text-black sm:max-w-3xl max-w-xs">
-            Where you can explore the themes that have captured the hearts of
-            countless customers! This curated selection showcases the
-            top-selling designs
+          <p className="open-sans lg:text-basen md:text-sm text-[11px] text-black sm:max-w-3xl max-w-xs">
+           Every week, our staff personally hand-pick some of the best new website themes from our collection.
           </p>
         </div>
 
         {/* Card Box */}
         <div className="cardsmainbox grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8.5 md:mt-12 mt-6">
-          <div className="grid grid-cols-2 gap-5 fourcardsbox">
-            {cardsData.map((card) => (
-              <div
-                key={card.id}
-                style={{ backgroundColor: card.background }}
-                className="text-white rounded-[10px] px-1.5 pt-5 pb-1.5 flex flex-col gap-5 shadow-md  transition duration-300 cursor-pointer hover:shadow-red-400"
-              >
-                <h3 className="text-lg font-bold">{card.title}</h3>
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  className="object-contain my-auto"
-                />
-              </div>
-            ))}
-            <div className="col-span-2 mx-auto mt-4">
-              <button className=" text-lg border border-red-600 text-red-600 hover:bg-red-600 hover:text-white transition-all duration-300 rounded-[10px] px-4 py-2 items-center cursor-pointer ">
-                Browse All Categories
-              </button>
-            </div>
-          </div>
           {cardsData2.map((cards) => (
             <div
               key={cards.id}
@@ -153,4 +102,4 @@ const Category: React.FC = () => {
   );
 };
 
-export default Category;
+export default BestSellers;

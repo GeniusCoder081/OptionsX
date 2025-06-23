@@ -62,20 +62,25 @@ const Headertop: React.FC = () => {
               ))}
             </ul>
           </div>
-          <div className="lg:hidden flex items-center justify-between py-2">
+          <div className="lg:hidden flex items-center justify-between py-3">
             {/* Open Menu Button */}
-            <button
+           <div className="order-2 items-center flex gap-3">
+             <button
               onClick={() => setIsMenuOpen(true)}
               aria-label="Open Menu"
-              className="text-white text-2xl border rounded px-2 py-1"
+              className="text-white text-2xl border rounded px-2 py-1 order-2"
             >
               <IoMdMenu />
             </button>
+            <button onClick={handlesignin} className="text-white border border-white sm:px-4 px-3 py-1 rounded-[7px] cursor-pointer hover:bg-red-600 hover:text-white transition-all duration-300">
+                Sign In
+            </button>
+           </div>
 
             <Link to="/">
-              <img src={footerlogo} alt="Logo" className="w-28" />
+              <img src={footerlogo} alt="Logo" className="w-28 order-1" />
             </Link>
-
+            
             {/* Slide-in Mobile Menu Panel */}
             <div
               className={`fixed sm:top-19 top-0 left-0 h-full w-64 bg-black text-white transform transition-transform duration-300 ease-in-out z-50 ${

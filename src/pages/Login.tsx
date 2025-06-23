@@ -47,8 +47,8 @@ const handle = (): void => {
                   <p className="md:text-sm text-xs">
                     Access diverse themes, videos and photos
                   </p>
-                </div>
-                <div className="card2 shadow-[0_0_30px_rgba(0,0,0,0.1)] bg-white max-w-55 md:px-9 md:py-5 px-4 py-3 flex flex-col gap-2.5 rounded-[10px] xl:absolute 2xl:-right-15 2xl:top-17 -right-12 top-40 z-2">
+                </div>shadow-[0_0_30px_rgba(0,0,0,0.1)]
+                <div className="card2  bg-white max-w-55 md:px-9 md:py-5 px-4 py-3 flex flex-col gap-2.5 rounded-[10px] xl:absolute 2xl:-right-15 2xl:top-17 -right-12 top-40 z-2">
                   <span>
                     <img src={icon2} alt="" />
                   </span>
