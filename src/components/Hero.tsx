@@ -5,38 +5,114 @@ import heroimg3 from "../assets/images/heroimgthree.png";
 import xiconlogo from "../assets/logos/xicon.png";
 import build from "../assets/logos/buildicon.png";
 import unique from "../assets/logos/uniqueicon.png";
-import Category from "./Category";
-import Benefits from "./Benefits";
-import BestSellers from "./BestSellers";
-import FeatureCreator from "./FeatureCreator";
-import Perfecttheme from "./Perfecttheme";
+import { useEffect, useRef, useState } from "react";
+export interface keywordsdata {
+  id: number;
+  keyword: string;
+}
+export const Keyworditem: keywordsdata[] = [
+  { id: 1, keyword: "Wordpress" },
+  { id: 2, keyword: "ecommerce" },
+  { id: 3, keyword: "shopify" },
+  { id: 4, keyword: "web design" },
+  { id: 5, keyword: "ui ux design" },
+  { id: 6, keyword: "website" },
+  { id: 7, keyword: "elementor" },
+  { id: 8, keyword: "html" },
+  { id: 9, keyword: "marketing" },
+  { id: 10, keyword: "themeforest design" },
+  { id: 11, keyword: "themeforest" },
+  { id: 12, keyword: "ui template" },
+  { id: 13, keyword: "landing page" },
+  { id: 14, keyword: "download" },
+  { id: 15, keyword: "cms" },
+  { id: 16, keyword: "wordpress theme" },
+];
+
 const Hero: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const suggestionsRef = useRef<HTMLUListElement>(null);
+
+  const filteredKeywords = Keyworditem.filter((item) =>
+    item.keyword.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        inputRef.current &&
+        !inputRef.current.contains(event.target as Node) &&
+        suggestionsRef.current &&
+        !suggestionsRef.current.contains(event.target as Node)
+      ) {
+        setShowSuggestions(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
-    <div className="bg-[#f4e8e8]">
-      <div className="container mx-auto justify-center flex py-17.5 flex-col items-center">
-        <div className="lg:max-w-[848px] md:max-w-[700px] sm:max-w-[600px] px-10 w-full 2xl:ml-39">
+    <div className="bg-[#f9f9f9]">
+      <div className="container mx-auto justify-center flex py-17.5 flex-col items-center relative">
+        <div className="absolute sm:-top-25 sm:-left-10 left-5 top-0 xl:w-[1200px] md:w-[800px] xl:h-[1030px] md:h-[700px] sm:w-[500px] sm:h-[500px] w-90 h-130  bg-[#AE0105] sm:opacity-15 opacity-50 rounded-full blur-[514px] -z-0"></div>
+        <div className="lg:max-w-[848px] md:max-w-[700px] sm:max-w-[600px] px-10 w-full 2xl:ml-39 relative z-1">
           <h1 className="lg:text-[38px] md:text-3xl sm:text-2xl text-xl font-bold text-center">
             Professional <span className="text-red-500">WordPress Themes</span>,
             Website Templates for any Project
           </h1>
-          <div className="flex justify-between max-w-4xl w-full shadow-[0_0_30px_rgba(0,0,0,0.1)] bg-white  sm:py-2.5 py-1 lg:my-5 mt-5 mb-3 sm:px-4 pl-4 pr-2 rounded-xl ">
+          <div className="flex justify-between max-w-4xl w-full shadow-[0_0_30px_rgba(0,0,0,0.1)] bg-white sm:py-2.5 py-1 lg:my-5 mt-5 mb-3 sm:px-4 pl-4 pr-2 rounded-xl relative z-[99999]">
             <input
+              ref={inputRef}
               type="text"
               placeholder="e.g responsive CMS Theme"
+              value={searchTerm}
+              onFocus={() => setShowSuggestions(true)}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full text-base focus:outline-none"
             />
             <button className="sm:text-lg text-white bg-red-600 border sm:px-4 px-2.5 sm:py-2 py-1.5 rounded-lg font-medium flex flex-row items-center sm:gap-2.5 gap-1 cursor-pointer hover:bg-red-700 transition-all duration-300">
               <IoSearchSharp className="sm:w-6 w-5 h-5 sm:h-6" /> Search
             </button>
+
+            {/* 🔽 Suggestion Dropdown */}
+            {showSuggestions && searchTerm && (
+              <ul
+                ref={suggestionsRef}
+               className="absolute top-full left-0 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg z-[9999] max-h-60 overflow-y-auto ">
+                {filteredKeywords.length > 0 ? (
+                  filteredKeywords.map((item) => (
+                    <li
+                      key={item.id}
+                      onClick={() => {
+                        setSearchTerm(item.keyword);
+                        setShowSuggestions(false);
+                      }}
+                      className="px-4 py-2 text-base text-gray-700 cursor-pointer hover:bg-gray-100"
+                    >
+                      {item.keyword}
+                    </li>
+                  ))
+                ) : (
+                  <li className="px-4 py-2 text-sm text-gray-400">
+                    No results found
+                  </li>
+                )}
+              </ul>
+            )}
           </div>
+
           <p className="lg:text-base sm:text-sm text-xs font-semibold tracking-wide text-center">
             Discover thousands of easy to customize themes, templates & CMS
             products, made by world-class developers.
           </p>
         </div>
-        <div className="relative xl:h-[450px] lg:h-95 sm:h-115 h-100 w-full mx-auto z-10 flex sm:items-end flex-col sm:flex-row">
+        <div className="relative xl:h-[450px] lg:h-95 sm:h-115 h-100 w-full mx-auto z-0 flex sm:items-end flex-col sm:flex-row">
           {/* Animated images */}
-          <div className="threeimg pointer-events-none flex flex-col items-center mt-10">
+          <div className="threeimg pointer-events-none flex flex-col items-center mt-10 z-0">
             <img
               src={heroimg1}
               alt="heroimgone"
@@ -58,8 +134,8 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Build box */}
-          <div className="mt-7 grid sm:grid-cols-2 gap-x-5 gap-y-3 mx-auto">
-            <div className="bg-white xl:max-w-[480px] sm:max-w-75 sm:w-full xl:px-6 px-4 py-4 flex gap-2.5 rounded-sm items-center z-30 lg:absolute 2xl:right-63.5 xl:right-50 lg:right-50 right-20 xl:top-30 lg:top-20 md:top-10 opacity-0 fade-build-seq mx-3">
+          <div className="mt-7 grid sm:grid-cols-2 gap-x-5 gap-y-3 mx-auto ">
+            <div className="bg-white xl:max-w-[480px] sm:max-w-75 sm:w-full xl:px-6 px-4 py-4 flex gap-2.5 rounded-sm items-center lg:absolute 2xl:right-63.5 xl:right-50 lg:right-50 right-20 xl:top-30 lg:top-20 md:top-10 opacity-0 fade-build-seq mx-3">
               <div>
                 <img src={build} alt="" className="xl:w-12.5 xl:h-12 w-8 h-6" />
               </div>
@@ -136,11 +212,6 @@ const Hero: React.FC = () => {
           </div>
         </div>
       </div>
-      <Category />
-      <Benefits/>
-      <BestSellers/>
-      <FeatureCreator/>
-      <Perfecttheme/>
     </div>
   );
 };

@@ -76,3 +76,11 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+.threeimg {
+  z-index: 0; /* or lower */
+}
+.fade-img-seq,
+.fade-build-seq,
+.fade-unique-seq {
+  z-index: 10; /* or lower */
+}

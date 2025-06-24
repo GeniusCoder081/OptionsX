@@ -1,4 +1,3 @@
-
 const Perfecttheme = () => {
   return (
     <div className="bg-gradient-to-r from-[#600D10] via-[#871116] to-[#600D10] mb-15 sm:mb-23">

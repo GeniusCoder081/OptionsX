@@ -22,6 +22,9 @@ const Headertop: React.FC = () => {
   const handlesignin = (): void => {
     navigate("/login");
   };
+  const handlesell = (): void => {
+    navigate("/listing");
+  };
   return (
     <div className="sticky top-0 z-50">
       <div className=" flex-col  bg-white sm:flex hidden shadow-sm py-2 border-b-1 border-gray-300">
@@ -35,7 +38,7 @@ const Headertop: React.FC = () => {
               <li className="text-red-600 cursor-pointer lg:flex hidden">
                 Community
               </li>
-              <li className="text-red-600 border border-red-500 px-9 py-1.5 rounded-[7px] cursor-pointer hover:bg-red-600 hover:text-white transition-all duration-300">
+              <li onClick={handlesell} className="text-red-600 border border-red-500 px-9 py-1.5 rounded-[7px] cursor-pointer hover:bg-red-600 hover:text-white transition-all duration-300">
                 Sell
               </li>
               <li className="relative">

@@ -64,7 +64,7 @@ export const cardsData2: CardItem2[] = [
 ];
 const Category: React.FC = () => {
   return (
-    <div>
+    <div className="bg-[#f9f9f9]">
       <div className="container mx-auto pt-10 pb-15 px-6">
         <div className="flex flex-col gap-3">
           <div className="flex flex-row justify-between items-center ">
